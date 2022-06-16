@@ -5,15 +5,21 @@
 
 ##  Installation
 
-Install the latest version of the plugin with the `go install` command:
+Download the latest version from the [Release Page](https://github.com/lovoo/protoc-gen-go-grpcmock/releases/latest).
+Extract the archive and make sure, the `protoc-gen-go-grpcmock` binary can be found in your `PATH`. 
+
+For instance:
+```
+$ VERSION=$(curl -fsSL https://github.com/lovoo/protoc-gen-go-grpcmock/releases/latest -H "Accept: application/json"  | jq -r .tag_name)
+$ curl -fsSL "https://github.com/lovoo/protoc-gen-go-grpcmock/releases/download/${VERSION}/protoc-gen-go-grpcmock_${VERSION:1}_$(uname -s)_$(uname -m).tar.gz" | tar -xzC /usr/local/bin protoc-gen-go-grpcmock
+```
+
+Or build the `protoc-gen-go-grpcmock` binary from source (requires Go 1.18+).
 
 ```
-$ go install github.com/lovoo/protoc-gen-go-grpcmock/cmd/protoc-gen-go-grpcmock@latest
+$ git clone https://github.com/lovoo/protoc-gen-go-grpcmock && cd protoc-gen-go-grpcmock
+$ go build -ldflags "-X main.Version=$(git describe --tags)" cmd/protoc-gen-go-grpcmock
 ```
-
-Or download the latest version from the [Release Page](https://github.com/lovoo/protoc-gen-go-grpcmock/releases/latest).
-
-Make sure, the `protoc-gen-go-grpcmock` binary can be found in your `PATH`.
 
 ## Usage
 
