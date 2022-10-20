@@ -1,14 +1,17 @@
 // protoc-gen-go-grpcmock is a plugin for the Google protocol buffer compiler to
 // generate Go code. Install it by building this program and making it
 // accessible within your PATH with the name:
+//
 //	protoc-gen-go-grpcmock
 //
 // The 'go-grpcmock' suffix becomes part of the argument for the protocol compiler,
 // such that it can be invoked as:
+//
 //	protoc --go-grpcmock_out=. path/to/file.proto
 //
 // This generates Go service definitions for the protocol buffer defined by
 // file.proto.  With that input, the output will be written to:
+//
 //	path/to/file_grpc_mock.pb.go
 package main
 

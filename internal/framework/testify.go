@@ -87,12 +87,9 @@ func (tm *testifyMocker) generateService(g *protogen.GeneratedFile, service *pro
 	}
 }
 
-func (tm *testifyMocker) generateStruct(g *protogen.GeneratedFile, typeName string, fields ...string) {
+func (tm *testifyMocker) generateStruct(g *protogen.GeneratedFile, typeName string) {
 	g.P("type ", unexport(typeName), " struct {")
 	g.P(g.QualifiedGoIdent(testifyMockPackage.Ident("Mock")))
-	for _, field := range fields {
-		g.P(field)
-	}
 	g.P("}")
 	g.P()
 }
