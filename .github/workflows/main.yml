@@ -28,12 +28,9 @@ jobs:
       run: go build -o build/protoc-gen-go-grpcmock ./cmd/protoc-gen-go-grpcmock
 
     - name: Test
-      run: go test -v ./...
+      run: go test -v -race -cover ./...
 
     - name: Lint
       uses: golangci/golangci-lint-action@v3
       with:
         version: latest
-
-    - name: Coverage
-      run: go test -v -race -cover ./...
