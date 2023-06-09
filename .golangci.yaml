@@ -28,7 +28,6 @@ linters:
     - bodyclose
     - containedctx
     - contextcheck
-    - depguard
     - dogsled
     - dupl
     - durationcheck
