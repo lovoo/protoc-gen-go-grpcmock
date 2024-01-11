@@ -88,7 +88,7 @@ func (tm *testifyMocker) generateService(g *protogen.GeneratedFile, service *pro
 }
 
 func (tm *testifyMocker) generateStruct(g *protogen.GeneratedFile, typeName string) {
-	g.P("type ", unexport(typeName), " struct {")
+	g.P("type ", typeName, " struct {")
 	g.P(g.QualifiedGoIdent(testifyMockPackage.Ident("Mock")))
 	g.P("}")
 	g.P()
@@ -98,8 +98,8 @@ func (tm *testifyMocker) generateNewFunc(g *protogen.GeneratedFile, service *pro
 	if service.Desc.Options().(*descriptorpb.ServiceOptions).GetDeprecated() {
 		g.P(deprecationComment)
 	}
-	g.P("func New", typeName, " (", ") *", unexport(typeName), " {")
-	g.P("return &", unexport(typeName), "{}")
+	g.P("func New", typeName, " (", ") *", typeName, " {")
+	g.P("return &", typeName, "{}")
 	g.P("}")
 	g.P()
 }
@@ -110,50 +110,50 @@ func (tm *testifyMocker) generateClientStreamHandler(g *protogen.GeneratedFile, 
 
 	tm.generateNewFunc(g, method.Parent, clientStreamHandler)
 
-	g.P("func (x *", unexport(clientStreamHandler), ") Header() (", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ", error) {")
+	g.P("func (x *", clientStreamHandler, ") Header() (", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ", error) {")
 	g.P("args := x.Called()")
 	g.P("return args.Get(0).(", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), "), args.Error(1)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(clientStreamHandler), ") Trailer() ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), " {")
+	g.P("func (x *", clientStreamHandler, ") Trailer() ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), " {")
 	g.P("args := x.Called()")
 	g.P("return args.Get(0).(", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ")")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(clientStreamHandler), ") CloseSend() error {")
+	g.P("func (x *", clientStreamHandler, ") CloseSend() error {")
 	g.P("args := x.Called()")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(clientStreamHandler), ") Context() ", g.QualifiedGoIdent(contextPackage.Ident("Context")), " {")
+	g.P("func (x *", clientStreamHandler, ") Context() ", g.QualifiedGoIdent(contextPackage.Ident("Context")), " {")
 	g.P("args := x.Called()")
 	g.P("return args.Get(0).(", g.QualifiedGoIdent(contextPackage.Ident("Context")), ")")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(clientStreamHandler), ") SendMsg(m interface{}) error {")
+	g.P("func (x *", clientStreamHandler, ") SendMsg(m interface{}) error {")
 	g.P("args := x.Called(m)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(clientStreamHandler), ") RecvMsg(m interface{}) error {")
+	g.P("func (x *", clientStreamHandler, ") RecvMsg(m interface{}) error {")
 	g.P("args := x.Called(m)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
 	if method.Desc.IsStreamingClient() {
-		g.P("func (x *", unexport(clientStreamHandler), ") Send(m *", g.QualifiedGoIdent(method.Input.GoIdent), ") error {")
+		g.P("func (x *", clientStreamHandler, ") Send(m *", g.QualifiedGoIdent(method.Input.GoIdent), ") error {")
 		g.P("args := x.Called(m)")
 		g.P("return args.Error(0)")
 		g.P("}")
 		g.P()
 
-		g.P("func (x *", unexport(clientStreamHandler), ") OnSend(m interface{}) *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
+		g.P("func (x *", clientStreamHandler, ") OnSend(m interface{}) *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
 		g.P("return x.On(\"Send\", m)")
 		g.P("}")
 		g.P()
@@ -164,13 +164,13 @@ func (tm *testifyMocker) generateClientStreamHandler(g *protogen.GeneratedFile, 
 		methodName = "CloseAndRecv"
 	}
 
-	g.P("func (x *", unexport(clientStreamHandler), ") ", methodName, "() ", "(*", g.QualifiedGoIdent(method.Output.GoIdent), ", error) {")
+	g.P("func (x *", clientStreamHandler, ") ", methodName, "() ", "(*", g.QualifiedGoIdent(method.Output.GoIdent), ", error) {")
 	g.P("args := x.Called()")
 	g.P("return args.Get(0).(*", g.QualifiedGoIdent(method.Output.GoIdent), "), args.Error(1)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(clientStreamHandler), ") On", methodName, "() *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
+	g.P("func (x *", clientStreamHandler, ") On", methodName, "() *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
 	g.P("return x.On(\"", methodName, "\")")
 	g.P("}")
 	g.P()
@@ -182,49 +182,49 @@ func (tm *testifyMocker) generateServerStreamHandler(g *protogen.GeneratedFile, 
 
 	tm.generateNewFunc(g, method.Parent, serverStreamHandler)
 
-	g.P("func (x *", unexport(serverStreamHandler), ") SetHeader(md ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ") error {")
+	g.P("func (x *", serverStreamHandler, ") SetHeader(md ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ") error {")
 	g.P("args := x.Called(md)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(serverStreamHandler), ") SendHeader(md ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ") error {")
+	g.P("func (x *", serverStreamHandler, ") SendHeader(md ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ") error {")
 	g.P("args := x.Called(md)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(serverStreamHandler), ") SetTrailer(md ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ") {")
+	g.P("func (x *", serverStreamHandler, ") SetTrailer(md ", g.QualifiedGoIdent(grpcMetaPackage.Ident("MD")), ") {")
 	g.P("_ = x.Called(md)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(serverStreamHandler), ") Context() ", g.QualifiedGoIdent(contextPackage.Ident("Context")), " {")
+	g.P("func (x *", serverStreamHandler, ") Context() ", g.QualifiedGoIdent(contextPackage.Ident("Context")), " {")
 	g.P("args := x.Called()")
 	g.P("return args.Get(0).(", g.QualifiedGoIdent(contextPackage.Ident("Context")), ")")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(serverStreamHandler), ") SendMsg(m interface{}) error {")
+	g.P("func (x *", serverStreamHandler, ") SendMsg(m interface{}) error {")
 	g.P("args := x.Called(m)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(serverStreamHandler), ") RecvMsg(m interface{}) error {")
+	g.P("func (x *", serverStreamHandler, ") RecvMsg(m interface{}) error {")
 	g.P("args := x.Called(m)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
 	if method.Desc.IsStreamingClient() {
-		g.P("func (x *", unexport(serverStreamHandler), ") Recv() ", "(*", g.QualifiedGoIdent(method.Input.GoIdent), ", error) {")
+		g.P("func (x *", serverStreamHandler, ") Recv() ", "(*", g.QualifiedGoIdent(method.Input.GoIdent), ", error) {")
 		g.P("args := x.Called()")
 		g.P("return args.Get(0).(*", g.QualifiedGoIdent(method.Input.GoIdent), "), args.Error(1)")
 		g.P("}")
 		g.P()
 
-		g.P("func (x *", unexport(serverStreamHandler), ") OnRecv() *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
+		g.P("func (x *", serverStreamHandler, ") OnRecv() *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
 		g.P("return x.On(\"Recv\")")
 		g.P("}")
 		g.P()
@@ -235,13 +235,13 @@ func (tm *testifyMocker) generateServerStreamHandler(g *protogen.GeneratedFile, 
 		methodName = "SendAndClose"
 	}
 
-	g.P("func (x *", unexport(serverStreamHandler), ") ", methodName, "(m *", g.QualifiedGoIdent(method.Output.GoIdent), ") error {")
+	g.P("func (x *", serverStreamHandler, ") ", methodName, "(m *", g.QualifiedGoIdent(method.Output.GoIdent), ") error {")
 	g.P("args := x.Called(m)")
 	g.P("return args.Error(0)")
 	g.P("}")
 	g.P()
 
-	g.P("func (x *", unexport(serverStreamHandler), ") On", methodName, "(m interface{}) *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
+	g.P("func (x *", serverStreamHandler, ") On", methodName, "(m interface{}) *", g.QualifiedGoIdent(testifyMockPackage.Ident("Call")), " {")
 	g.P("return x.On(\"", methodName, "\", m)")
 	g.P("}")
 	g.P()
