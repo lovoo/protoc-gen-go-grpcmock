@@ -4,8 +4,6 @@ import (
 	"strings"
 )
 
-func unexport(s string) string { return strings.ToLower(s[:1]) + s[1:] }
-
 func substringAfter(value, sep string) string {
 	pos := strings.Index(value, sep)
 	if pos == -1 {

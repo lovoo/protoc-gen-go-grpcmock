@@ -2611,27 +2611,51 @@ func (c *MockRouteGuide_RouteChatServer_Send_OngoingVerification) GetAllCaptured
 	return
 }
 
-func AnyPtrToRouteguidePoint() *Point {
-	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(*Point))(nil)).Elem()))
-	var nullValue *Point
+func AnyPtrToRouteguideFeature() *Feature {
+	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(*Feature))(nil)).Elem()))
+	var nullValue *Feature
 	return nullValue
 }
 
-func EqPtrToRouteguidePoint(value *Point) *Point {
+func EqPtrToRouteguideFeature(value *Feature) *Feature {
 	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
-	var nullValue *Point
+	var nullValue *Feature
 	return nullValue
 }
 
-func NotEqPtrToRouteguidePoint(value *Point) *Point {
+func NotEqPtrToRouteguideFeature(value *Feature) *Feature {
 	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
-	var nullValue *Point
+	var nullValue *Feature
 	return nullValue
 }
 
-func PtrToRouteguidePointThat(matcher pegomock.ArgumentMatcher) *Point {
+func PtrToRouteguideFeatureThat(matcher pegomock.ArgumentMatcher) *Feature {
 	pegomock.RegisterMatcher(matcher)
-	var nullValue *Point
+	var nullValue *Feature
+	return nullValue
+}
+
+func AnyRouteguideRouteGuideRouteChatServer() RouteGuide_RouteChatServer {
+	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(RouteGuide_RouteChatServer))(nil)).Elem()))
+	var nullValue RouteGuide_RouteChatServer
+	return nullValue
+}
+
+func EqRouteguideRouteGuideRouteChatServer(value RouteGuide_RouteChatServer) RouteGuide_RouteChatServer {
+	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
+	var nullValue RouteGuide_RouteChatServer
+	return nullValue
+}
+
+func NotEqRouteguideRouteGuideRouteChatServer(value RouteGuide_RouteChatServer) RouteGuide_RouteChatServer {
+	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
+	var nullValue RouteGuide_RouteChatServer
+	return nullValue
+}
+
+func RouteguideRouteGuideRouteChatServerThat(matcher pegomock.ArgumentMatcher) RouteGuide_RouteChatServer {
+	pegomock.RegisterMatcher(matcher)
+	var nullValue RouteGuide_RouteChatServer
 	return nullValue
 }
 
@@ -2659,99 +2683,27 @@ func PtrToRouteguideRouteSummaryThat(matcher pegomock.ArgumentMatcher) *RouteSum
 	return nullValue
 }
 
-func AnyPtrToRouteguideFeature() *Feature {
-	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(*Feature))(nil)).Elem()))
-	var nullValue *Feature
+func AnyPtrToRouteguidePoint() *Point {
+	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(*Point))(nil)).Elem()))
+	var nullValue *Point
 	return nullValue
 }
 
-func EqPtrToRouteguideFeature(value *Feature) *Feature {
+func EqPtrToRouteguidePoint(value *Point) *Point {
 	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
-	var nullValue *Feature
+	var nullValue *Point
 	return nullValue
 }
 
-func NotEqPtrToRouteguideFeature(value *Feature) *Feature {
+func NotEqPtrToRouteguidePoint(value *Point) *Point {
 	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
-	var nullValue *Feature
+	var nullValue *Point
 	return nullValue
 }
 
-func PtrToRouteguideFeatureThat(matcher pegomock.ArgumentMatcher) *Feature {
+func PtrToRouteguidePointThat(matcher pegomock.ArgumentMatcher) *Point {
 	pegomock.RegisterMatcher(matcher)
-	var nullValue *Feature
-	return nullValue
-}
-
-func AnyRouteguideRouteGuideListFeaturesClient() RouteGuide_ListFeaturesClient {
-	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(RouteGuide_ListFeaturesClient))(nil)).Elem()))
-	var nullValue RouteGuide_ListFeaturesClient
-	return nullValue
-}
-
-func EqRouteguideRouteGuideListFeaturesClient(value RouteGuide_ListFeaturesClient) RouteGuide_ListFeaturesClient {
-	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
-	var nullValue RouteGuide_ListFeaturesClient
-	return nullValue
-}
-
-func NotEqRouteguideRouteGuideListFeaturesClient(value RouteGuide_ListFeaturesClient) RouteGuide_ListFeaturesClient {
-	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
-	var nullValue RouteGuide_ListFeaturesClient
-	return nullValue
-}
-
-func RouteguideRouteGuideListFeaturesClientThat(matcher pegomock.ArgumentMatcher) RouteGuide_ListFeaturesClient {
-	pegomock.RegisterMatcher(matcher)
-	var nullValue RouteGuide_ListFeaturesClient
-	return nullValue
-}
-
-func AnyPtrToRouteguideRectangle() *Rectangle {
-	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(*Rectangle))(nil)).Elem()))
-	var nullValue *Rectangle
-	return nullValue
-}
-
-func EqPtrToRouteguideRectangle(value *Rectangle) *Rectangle {
-	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
-	var nullValue *Rectangle
-	return nullValue
-}
-
-func NotEqPtrToRouteguideRectangle(value *Rectangle) *Rectangle {
-	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
-	var nullValue *Rectangle
-	return nullValue
-}
-
-func PtrToRouteguideRectangleThat(matcher pegomock.ArgumentMatcher) *Rectangle {
-	pegomock.RegisterMatcher(matcher)
-	var nullValue *Rectangle
-	return nullValue
-}
-
-func AnyRouteguideRouteGuideRouteChatServer() RouteGuide_RouteChatServer {
-	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(RouteGuide_RouteChatServer))(nil)).Elem()))
-	var nullValue RouteGuide_RouteChatServer
-	return nullValue
-}
-
-func EqRouteguideRouteGuideRouteChatServer(value RouteGuide_RouteChatServer) RouteGuide_RouteChatServer {
-	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
-	var nullValue RouteGuide_RouteChatServer
-	return nullValue
-}
-
-func NotEqRouteguideRouteGuideRouteChatServer(value RouteGuide_RouteChatServer) RouteGuide_RouteChatServer {
-	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
-	var nullValue RouteGuide_RouteChatServer
-	return nullValue
-}
-
-func RouteguideRouteGuideRouteChatServerThat(matcher pegomock.ArgumentMatcher) RouteGuide_RouteChatServer {
-	pegomock.RegisterMatcher(matcher)
-	var nullValue RouteGuide_RouteChatServer
+	var nullValue *Point
 	return nullValue
 }
 
@@ -2800,6 +2752,30 @@ func NotEqRouteguideRouteGuideRecordRouteServer(value RouteGuide_RecordRouteServ
 func RouteguideRouteGuideRecordRouteServerThat(matcher pegomock.ArgumentMatcher) RouteGuide_RecordRouteServer {
 	pegomock.RegisterMatcher(matcher)
 	var nullValue RouteGuide_RecordRouteServer
+	return nullValue
+}
+
+func AnyRouteguideRouteGuideListFeaturesClient() RouteGuide_ListFeaturesClient {
+	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(RouteGuide_ListFeaturesClient))(nil)).Elem()))
+	var nullValue RouteGuide_ListFeaturesClient
+	return nullValue
+}
+
+func EqRouteguideRouteGuideListFeaturesClient(value RouteGuide_ListFeaturesClient) RouteGuide_ListFeaturesClient {
+	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
+	var nullValue RouteGuide_ListFeaturesClient
+	return nullValue
+}
+
+func NotEqRouteguideRouteGuideListFeaturesClient(value RouteGuide_ListFeaturesClient) RouteGuide_ListFeaturesClient {
+	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
+	var nullValue RouteGuide_ListFeaturesClient
+	return nullValue
+}
+
+func RouteguideRouteGuideListFeaturesClientThat(matcher pegomock.ArgumentMatcher) RouteGuide_ListFeaturesClient {
+	pegomock.RegisterMatcher(matcher)
+	var nullValue RouteGuide_ListFeaturesClient
 	return nullValue
 }
 
@@ -2872,6 +2848,30 @@ func NotEqRouteguideRouteGuideRouteChatClient(value RouteGuide_RouteChatClient) 
 func RouteguideRouteGuideRouteChatClientThat(matcher pegomock.ArgumentMatcher) RouteGuide_RouteChatClient {
 	pegomock.RegisterMatcher(matcher)
 	var nullValue RouteGuide_RouteChatClient
+	return nullValue
+}
+
+func AnyPtrToRouteguideRectangle() *Rectangle {
+	pegomock.RegisterMatcher(pegomock.NewAnyMatcher(reflect.TypeOf((*(*Rectangle))(nil)).Elem()))
+	var nullValue *Rectangle
+	return nullValue
+}
+
+func EqPtrToRouteguideRectangle(value *Rectangle) *Rectangle {
+	pegomock.RegisterMatcher(&pegomock.EqMatcher{Value: value})
+	var nullValue *Rectangle
+	return nullValue
+}
+
+func NotEqPtrToRouteguideRectangle(value *Rectangle) *Rectangle {
+	pegomock.RegisterMatcher(&pegomock.NotEqMatcher{Value: value})
+	var nullValue *Rectangle
+	return nullValue
+}
+
+func PtrToRouteguideRectangleThat(matcher pegomock.ArgumentMatcher) *Rectangle {
+	pegomock.RegisterMatcher(matcher)
+	var nullValue *Rectangle
 	return nullValue
 }
 
