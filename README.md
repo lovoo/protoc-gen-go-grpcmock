@@ -14,7 +14,7 @@ $ VERSION=$(curl -fsSL https://github.com/lovoo/protoc-gen-go-grpcmock/releases/
 $ curl -fsSL "https://github.com/lovoo/protoc-gen-go-grpcmock/releases/download/${VERSION}/protoc-gen-go-grpcmock_${VERSION:1}_$(uname -s)_$(uname -m).tar.gz" | tar -xzC /usr/local/bin protoc-gen-go-grpcmock
 ```
 
-Or build the `protoc-gen-go-grpcmock` binary from source (requires Go 1.18+).
+Or build the `protoc-gen-go-grpcmock` binary from source (requires Go 1.21+).
 
 ```
 $ git clone https://github.com/lovoo/protoc-gen-go-grpcmock && cd protoc-gen-go-grpcmock
