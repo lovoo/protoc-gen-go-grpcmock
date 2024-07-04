@@ -313,7 +313,7 @@ func (tm *testifyMocker) generateMethodDefinitions(g *protogen.GeneratedFile, me
 }
 
 func (tm *testifyMocker) clientMethod(g *protogen.GeneratedFile, method *protogen.Method) *model.Method {
-	m := model.NewMethod(method, model.Receiver{Name: "c", Type: "*" + unexport(MockPrefix+method.Parent.GoName+ClientSuffix)})
+	m := model.NewMethod(method, model.Receiver{Name: "c", Type: "*" + MockPrefix + method.Parent.GoName + ClientSuffix})
 	m.AddArgument("ctx", g.QualifiedGoIdent(contextPackage.Ident("Context")))
 	if !method.Desc.IsStreamingClient() {
 		m.AddArgument("in", "*"+g.QualifiedGoIdent(method.Input.GoIdent))
@@ -332,7 +332,7 @@ func (tm *testifyMocker) clientMethod(g *protogen.GeneratedFile, method *protoge
 }
 
 func (tm *testifyMocker) serverMethod(g *protogen.GeneratedFile, method *protogen.Method) *model.Method {
-	m := model.NewMethod(method, model.Receiver{Name: "s", Type: "*" + unexport(MockPrefix+method.Parent.GoName+ServerSuffix)})
+	m := model.NewMethod(method, model.Receiver{Name: "s", Type: "*" + MockPrefix + method.Parent.GoName + ServerSuffix})
 	if !method.Desc.IsStreamingClient() && !method.Desc.IsStreamingServer() {
 		m.AddArgument("ctx", g.QualifiedGoIdent(contextPackage.Ident("Context")))
 		m.AddReturn("*" + g.QualifiedGoIdent(method.Output.GoIdent))
