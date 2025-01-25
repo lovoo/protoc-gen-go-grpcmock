@@ -271,6 +271,16 @@ func (tm *testifyMocker) generateMethodDefinitions(g *protogen.GeneratedFile, me
 	if len(method.Return) > 0 {
 		ret := make([]string, len(method.Return))
 		for i, r := range method.Return {
+			if r.IsPointer() {
+				g.P("var ret", i, " ", r)
+				g.P("if args.Get(", i, ") != nil {")
+				g.P("ret", i, " = args.Get(", i, ").(", r, ")")
+				g.P("}")
+
+				ret[i] = fmt.Sprintf("ret%d", i)
+				continue
+			}
+
 			switch r {
 			case "bool":
 				ret[i] = fmt.Sprintf("args.Bool(%d)", i)
