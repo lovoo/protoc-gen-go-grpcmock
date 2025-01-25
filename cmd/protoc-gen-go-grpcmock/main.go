@@ -19,6 +19,7 @@ import (
 	"flag"
 	"fmt"
 
+	gengo "google.golang.org/protobuf/cmd/protoc-gen-go/internal_gengo"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/types/pluginpb"
 
@@ -41,8 +42,9 @@ func main() {
 	testFramework := flags.String("framework", "testify", "The mocking framework to use.")
 	importPackage := flags.Bool("import_package", false, "Import the file's Go package.")
 	protogen.Options{ParamFunc: flags.Set}.Run(func(gen *protogen.Plugin) error {
-		gen.SupportedFeatures = uint64(pluginpb.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL)
-
+		gen.SupportedFeatures = uint64(pluginpb.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL) | uint64(pluginpb.CodeGeneratorResponse_FEATURE_SUPPORTS_EDITIONS)
+		gen.SupportedEditionsMinimum = gengo.SupportedEditionsMinimum
+		gen.SupportedEditionsMaximum = gengo.SupportedEditionsMaximum
 		m, err := framework.Mocker(*testFramework)
 		if err != nil {
 			return err
